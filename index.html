@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Reata de Oro | Link</title>
+  <style>
+    
+    :root{
+      --bg:#0b0b0f;
+      --card:#12121a;
+      --card2:#0f0f16;
+      --text:#f3f3f7;
+      --muted:#b9b9c6;
+      --line: rgba(255,255,255,.10);
+      --accent:#f5c04b;   /* dorado cantina */
+      --accent2:#ff6b6b;  /* coral */
+      --radius:18px;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --max: 720px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+         linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.85)),
+    url("img/logo_mujer2.jpeg");
+            background-size:cover;
+            background-position:center;
+            background-attachment:fixed;
+            min-height:100vh;
+    }
+    .intro-video{
+  max-width: var(--max);
+  margin: auto;
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.intro-video video{
+  width:100%;
+  display:block;
+}
+
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:auto; padding:18px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero{
+      text-align:center;
+      padding-bottom: 12px;
+    }
+    .cover{
+      height: 190px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.65)),
+        url("img/logo1.jpeg");
+      background-size: cover;
+      background-position:center;
+    }
+    .logo{
+      width:86px; height:86px;
+      border-radius: 22px;
+      margin: -43px auto 10px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(245,192,75,.65), transparent 45%),
+        radial-gradient(circle at 70% 25%, rgba(255,107,107,.35), transparent 45%),
+        linear-gradient(180deg, #141420, #0e0e14);
+      display:grid; place-items:center;
+      font-weight:900; letter-spacing:.5px;
+    }
+    h1{margin:8px 0 6px; font-size: 28px; line-height:1.1}
+    .tag{color:var(--muted); margin:0 0 10px; font-weight:600}
+    .hours{
+      display:grid; gap:6px;
+      margin: 10px auto 14px;
+      width:min(520px, 95%);
+      padding:12px 14px;
+      background: rgba(0,0,0,.18);
+      border:1px solid var(--line);
+      border-radius: 16px;
+    }
+    .hours b{color:var(--text)}
+    .hours .row{display:flex; justify-content:space-between; gap:10px; color:var(--muted); font-weight:600}
+    .btncol{display:grid; gap:10px; width:min(520px, 95%); margin: 0 auto 12px;}
+    .btn{
+      display:flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:14px 14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      font-weight:800;
+      letter-spacing:.2px;
+      transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{background: rgba(255,255,255,.08); border-color: rgba(245,192,75,.35)}
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background: linear-gradient(90deg, rgba(245,192,75,.92), rgba(255,107,107,.85));
+      border-color: rgba(255,255,255,.15);
+      color:#101014;
+    }
+    .btn.primary:hover{filter: brightness(1.02)}
+    .seg{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      width:min(520px, 95%);
+      margin: 8px auto 14px;
+    }
+    .seg button{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:800;
+      cursor:pointer;
+    }
+    .seg button.active{
+      background: rgba(245,192,75,.18);
+      border-color: rgba(245,192,75,.45);
+    }
+
+    /* Menu */
+
+    .menuBtn{
+  display:block;
+  width:100%;
+  max-width: var(--max, 520px);
+  margin: 12px auto;
+  padding: 14px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+    }
+ 
+.menuBtn:active{ transform: scale(.99); }
+   .menu-card{
+  background:#0f0f0f;
+  padding:12px;
+}
+ .menubebidasBtn{
+  display:block;
+  width:100%;
+  max-width: var(--max, 520px);
+  margin: 12px auto;
+  padding: 14px 16px;
+  text-align:center;
+  text-decoration:none;
+  color:#fff;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(10px);
+}
+.menubebidasBtn:active{ transform: scale(.99); }
+   .menu-card{
+  background:#0f0f0f;
+  padding:12px;
+}
+
+.menu-card img{
+  width:100%;
+  height:180px;        /* más chica */
+  object-fit: contain; /* no recorta */
+  background:#0f0f0f;
+  display:block;
+
+}
+#menuImagenes {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* controla la separación entre botones */
+}
+
+#menuImagenes details {
+  margin: 0; /* elimina separación extra */
+}
+
+#menuImagenes summary {
+  margin: 0;
+}
+
+.lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 9999;
+}
+
+.lightbox.open{ display:flex; }
+
+.lightbox img{
+  max-width: 95vw;
+  max-height: 92vh;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* clave para pósters */
+  border-radius: 14px;
+}
+
+.lb-close{
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  font-size: 18px;
+}
+    .search input{
+      flex:1;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline:none;
+    }
+    details{
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    summary{
+      list-style:none;
+      padding: 14px 16px;
+      cursor:pointer;
+      font-weight:900;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    summary::-webkit-details-marker{display:none}
+    .chev{opacity:.7}
+    details[open] .chev{transform: rotate(180deg)}
+    .items{padding: 0 16px 14px; display:grid; gap:12px}
+    .item{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      border-radius: 16px;
+      padding: 12px;
+      display:grid;
+      gap:8px;
+    }
+    .itemTop{
+      display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
+      font-weight:900;
+    }
+    .price{color: var(--accent)}
+    .desc{color: var(--muted); font-weight:600; line-height:1.45}
+    .thumb{
+      height: 140px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background-size: cover;
+      background-position:center;
+      opacity:.95;
+    }
+
+    .footer{
+      text-align:center;
+      color: var(--muted);
+      font-weight:700;
+      padding: 14px 0 24px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 520px){
+      .cover{height: 170px}
+      h1{font-size: 26px}
+    }
+    /* ===== Reservas dentro del botón ===== */
+.reserva-wrap{ position: relative; }
+
+.reserva-panel{
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.28);
+  backdrop-filter: blur(10px);
+}
+
+.reserva-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 10px;
+}
+
+.reserva-head .x{
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  cursor:pointer;
+}
+
+.hidden{ display:none; }
+
+/* Reusar tu grid y actions,por si no existían estilos */
+.reserva-panel .grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+.reserva-panel .grid label{
+  display:grid;
+  gap:6px;
+  font-weight:700;
+  color: var(--muted);
+}
+
+.reserva-panel .grid label span{ font-size: 12px; }
+
+.reserva-panel .grid input{
+  padding:12px 12px;
+  border-radius: 14px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.18);
+  color: var(--text);
+  outline:none;
+}
+
+
+
+.reserva-panel .grid .full{ grid-column: 1 / -1; }
+
+.reserva-panel .actions{
+  display:flex;
+  gap:10px;
+  margin-top: 12px;
+}
+
+.reserva-panel .btn.ghost{
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+}
+
+.error{
+  margin: 10px 0 0;
+  color: #ffb3b3;
+  font-weight: 800;
+}
+@media (max-width: 520px){
+  .reserva-panel .grid{ grid-template-columns: 1fr; }
+}
+
+/* Contenedor general del acordeón */
+.menu-accordion{
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+  padding: 0 14px; /* aire en los lados en móvil */
+}
+
+/* Cada bloque */
+.menu-item{
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  overflow: hidden; /* CLAVE: evita que se salga */
+}
+
+/* Botón */
+.menu-btn{
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-weight: 700;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.menu-btn::-webkit-details-marker{ display:none; }
+
+/* Panel que contiene la imagen */
+.menu-panel{
+  padding: 12px 16px 16px;
+}
+
+/* Imagen responsive (CLAVE) */
+.menu-panel img{
+  width: 100%;
+  max-width: 520px;       /* límite para que no se vea enorme */
+  height: auto;
+  display: block;
+  margin: 0 auto;         /* centrada */
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  object-fit: contain;
+}
+@media (min-width: 900px){
+  .menu-panel img{
+    max-width: 650px;
+  }
+}
+
+/* quita separación extra entre estos dos */
+.menuBtn,
+.menubebidasBtn,
+#menuImagenes details.menu-item,
+#menuImagenes summary{
+  margin: 0 !important;
+}
+
+/* quita separación extra entre estos dos */
+.menuBtn,
+.menubebidasBtn{
+  display: block !important;
+  width: 100% !important;
+}
+
+/*uita margen del contenedor también */
+#menuImagenes,
+.menuBotones,
+.botonesMenu,
+.sectionMenu{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* separacion botone de menu*/
+.menubebidasBtn{ 
+  margin-top: 0px !important;
+}
+  </style>
+</head>
+<body>
+  <div class="intro-video">
+    <video autoplay muted loop playsinline>
+      <source src="video/intro.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="wrap">
+    <section class="card hero">
+      <div class="cover"></div>
+      <div class="logo">
+  <img src="img/logo_Oficial.jpeg" alt="Logo La Reata de Oro" style="width:80px; height:80px; border-radius:12px;">
+</div>
+
+
+      <h1>La Reata de Oro</h1>
+      <p class="tag">Tradición servida con estilo</p>
+
+      <div class="hours">
+        <div class="row"><b>Lunes a Sabado</b><span></span></div>
+        <div class="row"><span>Lun - Vier</span><span>1 pm / 10 pm</span></div>
+        <div class="row"><span>Sabados de Buffet</span><span>1 pm / 10 pm</span></div>
+      </div>
+
+      <div class="btncol reserva-wrap">
+  <button class="btn primary" type="button" onclick="toggleReserva()">
+    Reservar
+  </button>
+
+  <!-- FORMULARIO DENTRO DEL BOTÓN (se despliega abajo) -->
+  <div id="reservaPanel" class="reserva-panel hidden">
+    <div class="reserva-head">
+      <strong>Reservar mesa 🍻</strong>
+      <button class="x" type="button" onclick="toggleReserva()" aria-label="Cerrar">✕</button>
+    </div>
+
+    <div class="grid">
+      <label>
+        <span>Nombre</span>
+        <input type="text" id="nombre" placeholder="Tu nombre">
+      </label>
+      <label>
+        <span>Correo</span>
+        <input type="email" id="correo" placeholder="Tu correo electrónico">
+      </label>
+
+      <label>
+        <span>Personas</span>
+        <input type="number" id="personas" min="1" max="50" placeholder="Ej: 4">
+      </label>
+
+      <label>
+        <span>Fecha</span>
+        <input type="date" id="fecha">
+      </label>
+
+      <label>
+        <span>Hora</span>
+        <input type="time" id="hora">
+      </label>
+
+      <label class="full">
+        <span>Notas (opcional)</span>
+        <input type="text" id="notas" placeholder="Ej: mesa en terraza / cumple / silla de bebé">
+      </label>
+ </div>   
+
+    <p id="errorReserva" class="error" role="alert"></p>
+
+    <div class="actions">
+      <button class="btn ghost" type="button" onclick="toggleReserva()">Cancelar</button>
+      <button class="btn primary" type="button" onclick="enviarWhats()">Enviar a WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+      
+      <div class="btncol">
+        <a class="btn" href="https://eos.zetus.mx/cantinas/facturacion/" target="_blank" rel="noopener">Genera tu factura</a>
+        <a class="btn" href="https://maps.app.goo.gl/ovfuBANXx5KrgTdo8" target="_blank" rel="noopener">Ubicación</a>
+        <a class="btn" href="https://www.google.com/search?sa=X&sca_esv=b91b52423da4ab6e&sxsrf=ANbL-n6eV4N7k7xd35KPYyRwXFqVJyxgQg:1770240826313&q=la+reata+de+oro&si=AL3DRZHrmvnFAVQPOO2Bzhf8AX9KZZ6raUI_dT7DG_z0kV2_xxdp9TUCRZLEX7JFoi2PDc1JIhLX-EScCYr08IzKhYsJnqIQSyz1dmh3Scg6H3YgBlxMF6fc1DDPcqgtNKwdo4aGl7y5&ved=2ahUKEwj3_fn85MCSAxUpM0QIHURgPAAQrrQLegQIGxAA&biw=1536&bih=791&dpr=1.25&aic=0#lrd=0x85d1ff7b26da3e8d:0x45fd24c7af3b4f62,3,,,," target="_blank" rel="noopener">Califica nuestro servicio ⭐</a>
+      </div>
+
+
+      <script>
+function toggleReserva(){
+  const panel = document.getElementById('reservaPanel');
+  if(!panel) return;
+  panel.classList.toggle('hidden');
+}
+</script>
+
+<script>
+const WHATSAPP_PHONE = "5215535676393";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzGee_gGs4dIQXQhesX0Eh-4SAFsJpQiYNzk6s6QASo8twZbrMmNmaktn51KE83YOBr/exec";
+
+async function enviarWhats(){
+  const nombre = document.getElementById("nombre").value.trim();
+  const correo = document.getElementById("correo").value.trim();
+  const personas = document.getElementById("personas").value.trim();
+  const fecha = document.getElementById("fecha").value;
+  const hora = document.getElementById("hora").value;
+  const notas = document.getElementById("notas").value.trim();
+  const error = document.getElementById("errorReserva");
+
+  if(!nombre || !correo || !personas || !fecha || !hora){
+    error.style.color = "#ffb3b3";
+    error.textContent = "Porfa llena todos los campos 🙂";
+    return;
+  }
+
+  const mensaje = `Hola 😊 quiero reservar en La Reata de Oro.
+
+Nombre: ${nombre}
+Personas: ${personas}
+Fecha: ${fecha}
+Hora: ${hora}
+Correo: ${correo}
+Notas: ${notas || "N/A"}`;
+
+  const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
+
+  const params = new URLSearchParams();
+  params.append("nombre", nombre);
+  params.append("correo", correo);
+  params.append("personas", personas);
+  params.append("fecha", fecha);
+  params.append("hora", hora);
+  params.append("notas", notas);
+
+  try{
+    const resp = await fetch(SCRIPT_URL, {
+      method: "POST",
+      body: params
+    });
+
+    const text = await resp.text();
+    let out = null;
+
+    try {
+      e.parameter.nombre
+      e.parameter.correo
+      e.parameter.personas
+      e.parameter.fecha
+      e.parameter.hora
+      e.parameter.notas
+      out = JSON.parse(
+        text.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "string")
+      )        
+      
+    } catch {
+      throw new Error("La respuesta no fue JSON válido: " + text);
+    }
+
+    if(!out.ok){
+      throw new Error(out.error || "Error desconocido en Apps Script");
+    }
+
+    error.style.color = "#4CAF50";
+    error.textContent = "Reserva enviada ✔️ Revisa tu correo 📩";
+
+  }catch(e){
+    error.style.color = "#ffb3b3";
+    error.textContent = "WhatsApp enviado ✅ ✔️ Revisa tu correo 📩";
+    console.log("Fallo Apps Script:", e);
+  }
+}
+</script>
+
+   
+  <!-- ====== BOTON MENÚ ALIMENTOS ====== -->
+<!-- ====== BOTÓN MENÚ (solo redirige) ====== -->
+<a class="menuBtn" href="menu.html">Botana Cantinera</a>
+
+    <script>
+  const items = document.querySelectorAll('#menuImagenes details.menu-item');
+  items.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) items.forEach(o => o !== d && (o.open = false));
+  }));
+</script>
+<!-- ====== MENÚ BEBIDAS ====== -->
+      <!-- ====== BOTÓN MENÚ BEBIDAS (solo redirige) ====== -->
+<a class="menubebidasBtn" href="menubebidas.html">Menú Bebidas</a>
+
+</section>
+</section>
+  </div>
+</section>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" aria-hidden="true">
+  <button class="lb-close" type="button" aria-label="Cerrar">✕</button>
+  <img id="Img" alt="Menú ampliado">
+</div>
+<script>
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('Img');
+  const closeBtn = lb.querySelector('.lb-close');
+
+  document.querySelectorAll('.menu-card').forEach(btn => {
+    btn.addEventListener('click', () => {
+      lbImg.src = btn.getAttribute('data-full');
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden','false');
+    });
+  });
+
+  function closeLightbox(){
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden','true');
+    lbImg.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', (e) => { if(e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+</script>
+
+      <div class="footer">
+         © La Reata de Oro • Menú digital
+  </div>
+</body>
+</html>
+
+
+
