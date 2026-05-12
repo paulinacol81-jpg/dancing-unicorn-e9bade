@@ -1,1 +1,183 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Postres - La Reata de Oro</title>
+
+  <style>
+    :root{
+      --max: 620px;
+      --radius: 16px;
+      --glass: rgba(0,0,0,.35);
+      --border: rgba(255,255,255,.14);
+      --text: #fff;
+    }
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color: var(--text);
+      min-height:100vh;
+      background: #0b0b0b;
+      display:flex;
+      justify-content:center;
+      padding: 18px 14px 26px;
+    }
+
+    .wrap{
+      width:100%;
+      max-width: var(--max);
+    }
+
+    .topbar{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom: 14px;
+    }
+
+    .back{
+      text-decoration:none;
+      color:#fff;
+      padding:10px 12px;
+      border-radius: 12px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .title{
+      margin:0;
+      font-size: 18px;
+      opacity:.95;
+    }
+
+    .card{
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+      padding: 14px;
+    }
+
+    .hint{
+      margin: 0 0 10px;
+      opacity:.85;
+      font-size: 14px;
+    }
+
+    .cats{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .catBtn{
+      width:100%;
+      text-align:left;
+      padding: 14px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      color:#fff;
+      font-size: 15px;
+      cursor:pointer;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .catBtn .chev{
+      opacity:.8;
+      transform: rotate(0deg);
+      transition: transform .15s ease;
+    }
+
+    .catBtn[aria-expanded="true"] .chev{
+      transform: rotate(180deg);
+    }
+
+    .panel{
+      display:none;
+      margin-top: 10px;
+      border-radius: 14px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+
+    .panel.show{ display:block; }
+
+    .panel img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+
+    .panel .cap{
+      padding: 10px 12px;
+      font-size: 13px;
+      opacity:.9;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <a class="back" href="index.html">← Regresar</a>
+      <h1 class="title">Postres</h1>
+    </div>
+
+    <div class="card">
+      <p class="hint">Toca una categoria para ver su contenido.</p>
+
+      <div class="cats">
+
+        <!-- CATEGORÍA 1 -->
+        <button class="catBtn" type="button" data-target="Flan de la Casa" aria-expanded="false">
+          Flan de la Casa <span class="chev">⌄</span>
+        </button>
+        <div class="panel" id="Flan de la Casa">
+          <img src="img/flan_casa.png" alt="Postres - Flan de la Casa">
+          <div class="cap">Flan de la Casa</div>
+        </div>
+
+        
+
+      </div>
+    </div>
+
+  <script>
+    const buttons = document.querySelectorAll(".catBtn");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.target;
+        const panel = document.getElementById(id);
+        const isOpen = panel.classList.contains("show");
+
+        // Cierra todos (comportamiento acordeón)
+        document.querySelectorAll(".panel").forEach(p => p.classList.remove("show"));
+        document.querySelectorAll(".catBtn").forEach(b => b.setAttribute("aria-expanded","false"));
+
+        // Si estaba cerrado, lo abre
+        if(!isOpen){
+          panel.classList.add("show");
+          btn.setAttribute("aria-expanded","true");
+        }
+      });
+    });
+  </script>
+
+  </div>
+</body>
+
+</html>
 
