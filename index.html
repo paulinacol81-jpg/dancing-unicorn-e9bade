@@ -44,7 +44,27 @@
   width:100%;
   display:block;
 }
+.social-video{
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+}
 
+.social-video a{
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
+}
 
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:auto; padding:18px}
@@ -555,7 +575,13 @@
     <video autoplay muted loop playsinline>
       <source src="video/intro.mp4" type="video/mp4">
     </video>
+    <div class="social-video">
+    <a href="https://www.facebook.com/p/La-Reata-de-Oro-100079771477814/?locale=es_LA" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/lareatadeoro/" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/lareatadeoro/" target="_blank">TikTok</a>
   </div>
+  </div>
+  
   <div class="wrap">
     <section class="card hero">
       <div class="cover"></div>
