@@ -568,26 +568,6 @@
   line-height:1.5;
   font-weight:600;
 }
-
-    .btncol{
-    width: 100%;
-    max-width: 680px;
-    margin: 12px auto;
-}
-    .btncol {
-    width: 100%;
-    max-width: 680px;
-    margin: 14px auto;
-    display: flex;
-    justify-content: center;
-}
-
-.btncol .btn,
-.btncol a {
-    width: 100%;
-    max-width: 680px;
-    text-align: center;
-}
     .menuPostresBtn,
 .menuBtn,
 .menuCartaBtn,
@@ -816,29 +796,21 @@ Notas: ${notas || "N/A"}`;
 </script>
 
    
-  <!-- ====== BOTON MENÚ BOTANA ====== -->
+
 <!-- ====== BOTÓN MENÚ (solo redirige) ====== -->
-      
-<a class="menuPostresBtn" href="postres.html">Postres</a>
-      
+ <div class="menu-botones">     
+<a class="menuPostresBtn" href="postres.html">Postres</a>    
 <a class="menuBtn" href="menu.html">Menu 4 Tiempos</a>
-
-    <script>
-  const items = document.querySelectorAll('#menuImagenes details.menu-item');
-  items.forEach(d => d.addEventListener('toggle', () => {
-    if (d.open) items.forEach(o => o !== d && (o.open = false));
-  }));
-</script>
-
 <a class="menuCartaBtn" href="carta.html">De la Cocinita</a>
-<!-- ====== MENÚ BEBIDAS ====== -->
-      <!-- ====== BOTÓN MENÚ BEBIDAS (solo redirige) ====== -->
 <a class="menubebidasBtn" href="menubebidas.html">Menú Bebidas</a>
-</section>
-</section>
   </div>
 </section>
-</section>
+  
+
+
+
+
+
 
 <!-- Lightbox -->
 <div id="lightbox" class="lightbox" aria-hidden="true">
@@ -872,6 +844,12 @@ Notas: ${notas || "N/A"}`;
       <div class="footer">
          © La Reata de Oro • Menú digital
   </div>
+    <script>
+  const items = document.querySelectorAll('#menuImagenes details.menu-item');
+  items.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) items.forEach(o => o !== d && (o.open = false));
+  }));
+</script>
 </body>
 </html>
 
