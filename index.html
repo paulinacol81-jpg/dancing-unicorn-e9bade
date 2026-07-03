@@ -963,6 +963,41 @@ function actualizarContador(){
 actualizarContador();
 setInterval(actualizarContador, 1000);
 </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+window.addEventListener("load", () => {
+
+    const duration = 3000;
+    const end = Date.now() + duration;
+
+    (function frame() {
+
+        confetti({
+            particleCount: 4,
+            angle: 60,
+            spread: 70,
+            origin: { x: 0 },
+            colors: ['#006847','#FFFFFF','#CE1126']
+        });
+
+        confetti({
+            particleCount: 4,
+            angle: 120,
+            spread: 70,
+            origin: { x: 1 },
+            colors: ['#006847','#FFFFFF','#CE1126']
+        });
+
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
+
+    })();
+
+});
+</script>
 </body>
 </html>
 
