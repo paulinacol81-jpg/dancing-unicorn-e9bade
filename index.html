@@ -587,6 +587,39 @@
     width:100%;
     display:block;
 }
+.contador-partido{
+  position:absolute;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:5;
+  width:90%;
+  max-width:420px;
+  text-align:center;
+  padding:10px 14px;
+  border-radius:18px;
+  background:rgba(0,0,0,.62);
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  font-weight:800;
+  backdrop-filter:blur(10px);
+}
+
+.contador-partido strong{
+  display:block;
+  margin-top:4px;
+  font-size:22px;
+}
+
+#confeti{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  z-index:4;
+}
+    
   </style>
 </head>
 <body>
@@ -597,6 +630,13 @@
      alt="Promoción Domingo"
      class="promo-domingo"
      style="display:block;">
+
+   <div class="contador-partido">
+  <div>🇲🇽 México juega en:</div>
+  <strong id="contador">Cargando...</strong>
+</div>
+
+<canvas id="confeti"></canvas>
 
     <video id="video" autoplay muted loop playsinline style="display:none;">
         <source src="video/intro.mp4" type="video/mp4">
@@ -859,6 +899,32 @@ Notas: ${notas || "N/A"}`;
   items.forEach(d => d.addEventListener('toggle', () => {
     if (d.open) items.forEach(o => o !== d && (o.open = false));
   }));
+</script>
+  <script>
+const FECHA_PARTIDO = new Date("2026-07-05T12:00:00-06:00");
+
+function actualizarContador(){
+  const contador = document.getElementById("contador");
+  if(!contador) return;
+
+  const ahora = new Date();
+  const diferencia = FECHA_PARTIDO - ahora;
+
+  if(diferencia <= 0){
+    contador.textContent = "¡Ya empezó! 🍻⚽";
+    return;
+  }
+
+  const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+  const horas = Math.floor((diferencia / (1000 * 60 * 60)) % 24);
+  const minutos = Math.floor((diferencia / (1000 * 60)) % 60);
+  const segundos = Math.floor((diferencia / 1000) % 60);
+
+  contador.textContent = `${dias}d ${horas}h ${minutos}m ${segundos}s`;
+}
+
+actualizarContador();
+setInterval(actualizarContador, 1000);
 </script>
 </body>
 </html>
