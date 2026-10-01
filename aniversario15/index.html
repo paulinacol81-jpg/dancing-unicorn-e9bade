@@ -1,11 +1,69 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>15 Aniversario | La Reata de Oro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>15 Aniversario | La Reata de Oro</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #000;
+      overflow-x: hidden;
+    }
+
+    /* PORTADA */
+    .portada {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+
+    .portada img {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+    }
+
+    /* Aquí irá lo siguiente */
+    .espacio-siguiente {
+      height: 100vh;
+      background: #000;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>15 Aniversario La Reata de Oro</h1>
+
+  <main>
+
+    <!-- PORTADA -->
+    <section class="portada">
+      <img
+        src="portada.jpeg"
+        alt="15 Aniversario La Reata de Oro"
+      >
+    </section>
+
+    <!-- ESPACIO PARA LA SIGUIENTE PARTE -->
+    <section class="espacio-siguiente"></section>
+
+  </main>
+
 </body>
 </html>
