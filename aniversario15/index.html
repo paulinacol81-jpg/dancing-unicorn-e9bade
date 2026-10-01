@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <title>15 Aniversario | La Reata de Oro</title>
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -17,44 +19,84 @@
       scroll-behavior: smooth;
     }
 
-   body {
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
 
-  background-image: url("fondo marmol.png");
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-}
-    
-/* PORTADA */
-.portada {
-  width: 100%;
-  min-height: 100vh;
+      /* FONDO MÁRMOL */
+      background-image: url("fondo marmol.png");
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+    }
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    /* =========================
+       PORTADA
+    ========================== */
 
-  /* IMPORTANTE: ya no negro */
-  background: transparent;
-}
+    .portada {
+      width: 100%;
+      min-height: 100vh;
 
-.portada img {
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-/* Espacio para lo que agregaremos después */
-.espacio-siguiente {
-  min-height: 100vh;
-  background: transparent;
-}
+      background: transparent;
+    }
+
+    .portada img {
+      display: block;
+
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+    }
+
+    /* =========================
+       ESPACIO PARA CONTINUAR
+    ========================== */
+
+    .espacio-siguiente {
+      min-height: 100vh;
+      background: transparent;
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main>
+
+    <!-- =====================
+         PORTADA
+    ====================== -->
+
+    <section class="portada">
+
+      <img
+        src="portada.jpeg"
+        alt="15 Aniversario La Reata de Oro"
+      >
+
+    </section>
+
+
+    <!-- =====================
+         AQUÍ CONTINUAREMOS
+         CON LOS CANTANTES
+    ====================== -->
+
+    <section class="espacio-siguiente">
+
+    </section>
+
 
   </main>
 
 </body>
+
 </html>
