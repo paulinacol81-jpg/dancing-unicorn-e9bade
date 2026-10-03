@@ -457,11 +457,131 @@
 
 }
 
+    /* =========================
+   LUPA FLOTANTE
+========================= */
+
+.lupa-flotante {
+  position: fixed;
+
+  width: 95px;
+  height: 135px;
+
+  left: 8%;
+  top: 20%;
+
+  z-index: 9999;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-15deg)
+    scale(.8);
+
+  transition:
+    left 1s cubic-bezier(.22,.61,.36,1),
+    top 1s cubic-bezier(.22,.61,.36,1),
+    opacity .5s ease,
+    transform .8s ease;
+}
+
+
+/* CRISTAL */
+
+.cristal-lupa {
+  position: absolute;
+
+  width: 78px;
+  height: 78px;
+
+  border: 7px solid #b8860b;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.12);
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.30),
+    inset 0 0 15px rgba(255,255,255,.4);
+}
+
+
+/* BRILLO DEL CRISTAL */
+
+.cristal-lupa::after {
+  content: "";
+
+  position: absolute;
+
+  width: 20px;
+  height: 10px;
+
+  top: 13px;
+  left: 13px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.65);
+
+  transform: rotate(-35deg);
+}
+
+
+/* MANGO */
+
+.mango-lupa {
+  position: absolute;
+
+  width: 18px;
+  height: 65px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6f4c00,
+      #d4af37,
+      #8b6508
+    );
+
+  border-radius: 10px;
+
+  left: 67px;
+  top: 65px;
+
+  transform: rotate(-42deg);
+  transform-origin: top center;
+
+  box-shadow: 0 5px 12px rgba(0,0,0,.3);
+}
+
+
+/* CUANDO APARECE */
+
+.lupa-flotante.visible {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(0deg)
+    scale(1);
+}
+
   </style>
 </head>
 
 
 <body>
+
+  <!-- =====================
+     LUPA FLOTANTE
+====================== -->
+
+<div class="lupa-flotante" id="lupa">
+  <div class="cristal-lupa"></div>
+  <div class="mango-lupa"></div>
+</div>
 
   <main>
 
