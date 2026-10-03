@@ -482,10 +482,10 @@
     scale(.8);
 
   transition:
-    left 1s cubic-bezier(.22,.61,.36,1),
-    top 1s cubic-bezier(.22,.61,.36,1),
-    opacity .5s ease,
-    transform .8s ease;
+  left 2.2s cubic-bezier(.22,.61,.36,1),
+  top 2.2s cubic-bezier(.22,.61,.36,1),
+  opacity .8s ease,
+  transform 1.2s ease;
 }
 
 
@@ -608,7 +608,7 @@
      MENÚ
 ====================== -->
 
-<section class="menu-evento">
+<section class="menu-evento parada-menu">
 
   <img
     src="menu.jpeg"
@@ -959,34 +959,51 @@ const observerRegalo = new IntersectionObserver((entries) => {
 
 observerRegalo.observe(chicaRegalo);
 
-    /* =========================
+   /* =========================
    LUPA VIAJERA
 ========================= */
 
 const lupa = document.getElementById('lupa');
 
 const seccionesLupa = [
+
+  /* MENÚ */
   {
-    elemento: document.querySelector('.artista'),
-    x: '25%',
-    y: '32%'
+    elemento: document.querySelector('.parada-menu'),
+    x: '68%',
+    y: '48%'
   },
+
+  /* PARIS AGUILAR - NOMBRE */
   {
-    elemento: document.querySelector('.artista-sultan'),
-    x: '75%',
-    y: '38%'
+    elemento: document.querySelector('.artista .titulo-artista'),
+    x: '58%',
+    y: '30%'
   },
+
+  /* EL SULTÁN - NOMBRE */
+  {
+    elemento: document.querySelector('.artista-sultan .titulo-artista'),
+    x: '58%',
+    y: '30%'
+  },
+
+  /* RIFAS - CANASTA */
   {
     elemento: document.querySelector('.rifas'),
-    x: '25%',
-    y: '52%'
+    x: '62%',
+    y: '58%'
   },
+
+  /* RESERVACIONES */
   {
     elemento: document.querySelector('.reservaciones'),
-    x: '72%',
-    y: '65%'
+    x: '68%',
+    y: '68%'
   }
+
 ];
+
 
 function moverLupa() {
 
@@ -996,21 +1013,30 @@ function moverLupa() {
 
     if (!seccion.elemento) return;
 
-    const rect = seccion.elemento.getBoundingClientRect();
+    const rect =
+      seccion.elemento.getBoundingClientRect();
 
     if (
       rect.top < window.innerHeight * 0.65 &&
       rect.bottom > window.innerHeight * 0.35
     ) {
+
       seccionActual = indice;
+
     }
 
   });
 
+
+  /* SI TODAVÍA NO LLEGAMOS AL MENÚ */
+
   if (seccionActual === -1) {
+
     lupa.classList.remove('visible');
     return;
+
   }
+
 
   const destino = seccionesLupa[seccionActual];
 
@@ -1018,10 +1044,20 @@ function moverLupa() {
 
   lupa.style.left = destino.x;
   lupa.style.top = destino.y;
+
 }
 
-window.addEventListener('scroll', moverLupa);
-window.addEventListener('resize', moverLupa);
+
+window.addEventListener(
+  'scroll',
+  moverLupa,
+  { passive: true }
+);
+
+window.addEventListener(
+  'resize',
+  moverLupa
+);
 
 moverLupa();
 
