@@ -467,14 +467,14 @@
   width: 95px;
   height: 135px;
 
-  left: 8%;
-  top: 20%;
+  left: 100px;
+  top: 150px;
 
   z-index: 9999;
 
   pointer-events: none;
 
-  opacity: 0;
+  opacity: 1;
 
   transform:
     translate(-50%, -50%)
@@ -958,6 +958,72 @@ const observerRegalo = new IntersectionObserver((entries) => {
 });
 
 observerRegalo.observe(chicaRegalo);
+
+    /* =========================
+   LUPA VIAJERA
+========================= */
+
+const lupa = document.getElementById('lupa');
+
+const seccionesLupa = [
+  {
+    elemento: document.querySelector('.artista'),
+    x: '25%',
+    y: '32%'
+  },
+  {
+    elemento: document.querySelector('.artista-sultan'),
+    x: '75%',
+    y: '38%'
+  },
+  {
+    elemento: document.querySelector('.rifas'),
+    x: '25%',
+    y: '52%'
+  },
+  {
+    elemento: document.querySelector('.reservaciones'),
+    x: '72%',
+    y: '65%'
+  }
+];
+
+function moverLupa() {
+
+  let seccionActual = -1;
+
+  seccionesLupa.forEach((seccion, indice) => {
+
+    if (!seccion.elemento) return;
+
+    const rect = seccion.elemento.getBoundingClientRect();
+
+    if (
+      rect.top < window.innerHeight * 0.65 &&
+      rect.bottom > window.innerHeight * 0.35
+    ) {
+      seccionActual = indice;
+    }
+
+  });
+
+  if (seccionActual === -1) {
+    lupa.classList.remove('visible');
+    return;
+  }
+
+  const destino = seccionesLupa[seccionActual];
+
+  lupa.classList.add('visible');
+
+  lupa.style.left = destino.x;
+  lupa.style.top = destino.y;
+}
+
+window.addEventListener('scroll', moverLupa);
+window.addEventListener('resize', moverLupa);
+
+moverLupa();
 
 </script>
   
