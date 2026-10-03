@@ -274,6 +274,16 @@
   transform: scale(1.25);
 }
 
+    .carrusel-sultan {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.carrusel-sultan:active {
+  cursor: grabbing;
+}
+
   </style>
 </head>
 
@@ -496,6 +506,85 @@ slidesSultan.forEach((slide, indice) => {
 
 });
 
+    /* =========================
+   DESLIZAR CARRUSEL SULTÁN
+========================= */
+
+const carruselSultan = document.querySelector('.carrusel-sultan');
+
+let inicioX = 0;
+let finX = 0;
+
+function cambiarSlideSultan(direccion) {
+
+  /* Detenemos el video actual */
+  const actual = slidesSultan[slideActualSultan];
+
+  if (actual.tagName === 'VIDEO') {
+    actual.pause();
+  }
+
+  if (direccion === 'siguiente') {
+
+    slideActualSultan =
+      (slideActualSultan + 1) % slidesSultan.length;
+
+  } else {
+
+    slideActualSultan =
+      (slideActualSultan - 1 + slidesSultan.length)
+      % slidesSultan.length;
+
+  }
+
+  mostrarSlideSultan(slideActualSultan);
+}
+
+
+/* CELULAR / TOUCH */
+
+carruselSultan.addEventListener('touchstart', (e) => {
+  inicioX = e.touches[0].clientX;
+}, { passive: true });
+
+carruselSultan.addEventListener('touchend', (e) => {
+
+  finX = e.changedTouches[0].clientX;
+
+  const distancia = finX - inicioX;
+
+  if (Math.abs(distancia) < 50) return;
+
+  if (distancia < 0) {
+    cambiarSlideSultan('siguiente');
+  } else {
+    cambiarSlideSultan('anterior');
+  }
+
+});
+
+
+/* COMPUTADORA / MOUSE */
+
+carruselSultan.addEventListener('mousedown', (e) => {
+  inicioX = e.clientX;
+});
+
+carruselSultan.addEventListener('mouseup', (e) => {
+
+  finX = e.clientX;
+
+  const distancia = finX - inicioX;
+
+  if (Math.abs(distancia) < 50) return;
+
+  if (distancia < 0) {
+    cambiarSlideSultan('siguiente');
+  } else {
+    cambiarSlideSultan('anterior');
+  }
+
+});
 
 mostrarSlideSultan(0);
 
