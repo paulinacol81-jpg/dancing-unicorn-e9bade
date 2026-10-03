@@ -220,6 +220,60 @@
   color: #111;
 }
 
+    /* =========================
+   CARRUSEL EL SULTÁN
+========================= */
+
+.carrusel-sultan {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #000;
+}
+
+.slide-sultan {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.slide-sultan.activo {
+  opacity: 1;
+  z-index: 1;
+}
+
+.indicadores-sultan {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+
+  margin: 10px 0 4px;
+}
+
+.punto {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: #555;
+
+  transition: 0.3s;
+}
+
+.punto.activo {
+  background: #d4af37;
+  transform: scale(1.25);
+}
+
   </style>
 </head>
 
@@ -285,25 +339,164 @@
   </div>
 
 </section>
+
+    <!-- =====================
+     EL SULTÁN
+====================== -->
+
+<section class="artista artista-sultan">
+
+  <div class="titulo-artista">
+    <span>EN VIVO</span>
+    <h2>EL SULTÁN</h2>
+  </div>
+
+  <div class="telefono telefono-carrusel">
+
+    <div class="telefono-superior">
+      <span class="camara"></span>
+      <span class="bocina"></span>
+    </div>
+
+    <div class="carrusel-sultan">
+
+      <video class="slide-sultan activo" muted playsinline>
+        <source src="sultan_V1.mp4" type="video/mp4">
+      </video>
+
+      <video class="slide-sultan" muted playsinline>
+        <source src="sultan_V2.mp4" type="video/mp4">
+      </video>
+
+      <video class="slide-sultan" muted playsinline>
+        <source src="sultan_V3.mp4" type="video/mp4">
+      </video>
+
+      <img
+        class="slide-sultan"
+        src="sultan1.jpeg"
+        alt="El Sultán"
+      >
+
+    </div>
+
+    <div class="indicadores-sultan">
+      <span class="punto activo"></span>
+      <span class="punto"></span>
+      <span class="punto"></span>
+      <span class="punto"></span>
+    </div>
+
+    <div class="telefono-inferior"></div>
+
+  </div>
+
+</section>
+    
     
 
 
   </main>
 
   <script>
-  const telefono = document.querySelector('.telefono');
+/* =========================
+   ANIMACIÓN DE CELULARES
+========================= */
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        telefono.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.25
+const telefonos = document.querySelectorAll('.telefono');
+
+const observer = new IntersectionObserver((entries) => {
+
+  entries.forEach(entry => {
+
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+
   });
 
+}, {
+  threshold: 0.25
+});
+
+telefonos.forEach(telefono => {
   observer.observe(telefono);
+});
+
+
+/* =========================
+   CARRUSEL EL SULTÁN
+========================= */
+
+const slidesSultan =
+  document.querySelectorAll('.slide-sultan');
+
+const puntosSultan =
+  document.querySelectorAll('.indicadores-sultan .punto');
+
+let slideActualSultan = 0;
+
+function mostrarSlideSultan(indice) {
+
+  slidesSultan.forEach((slide, i) => {
+
+    slide.classList.toggle('activo', i === indice);
+    puntosSultan[i].classList.toggle('activo', i === indice);
+
+    if (slide.tagName === 'VIDEO') {
+
+      if (i === indice) {
+        slide.currentTime = 0;
+        slide.play().catch(() => {});
+      } else {
+        slide.pause();
+      }
+
+    }
+
+  });
+
+}
+
+
+/* CUANDO TERMINA UN VIDEO */
+
+slidesSultan.forEach((slide, indice) => {
+
+  if (slide.tagName === 'VIDEO') {
+
+    slide.addEventListener('ended', () => {
+
+      slideActualSultan =
+        (indice + 1) % slidesSultan.length;
+
+      mostrarSlideSultan(slideActualSultan);
+
+      /* Si llegamos a la foto,
+         la mostramos 4 segundos */
+
+      if (
+        slidesSultan[slideActualSultan].tagName === 'IMG'
+      ) {
+
+        setTimeout(() => {
+
+          slideActualSultan = 0;
+          mostrarSlideSultan(slideActualSultan);
+
+        }, 4000);
+
+      }
+
+    });
+
+  }
+
+});
+
+
+mostrarSlideSultan(0);
+
 </script>
   
 
