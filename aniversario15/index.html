@@ -847,6 +847,78 @@
   opacity: 0;
   visibility: hidden;
 }
+    /* =========================
+   APERTURA EN DOS
+========================= */
+
+.puerta-invitacion {
+  position: absolute;
+  top: 0;
+
+  width: 50%;
+  height: 100%;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #252525 0%,
+      #111 60%,
+      #050505 100%
+    );
+
+  z-index: 1;
+
+  transition:
+    transform 1.6s cubic-bezier(.77, 0, .18, 1);
+
+  will-change: transform;
+}
+
+.puerta-izquierda {
+  left: 0;
+
+  border-right: 1px solid rgba(212, 175, 55, .35);
+}
+
+.puerta-derecha {
+  right: 0;
+
+  border-left: 1px solid rgba(212, 175, 55, .35);
+}
+
+
+/* El contenido debe quedar encima de las puertas */
+
+.entrada-contenido {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* CUANDO ABRIMOS */
+
+.entrada-invitacion.abriendo
+.puerta-izquierda {
+  transform: translateX(-100%);
+}
+
+.entrada-invitacion.abriendo
+.puerta-derecha {
+  transform: translateX(100%);
+}
+
+
+/* Texto y sello desaparecen primero */
+
+.entrada-invitacion.abriendo
+.entrada-contenido {
+  opacity: 0;
+  transform: scale(.92);
+
+  transition:
+    opacity .45s ease,
+    transform .45s ease;
+}
 
   </style>
 </head>
@@ -858,6 +930,9 @@
 ====================== -->
 
 <div class="entrada-invitacion" id="entradaInvitacion">
+
+  <div class="puerta-invitacion puerta-izquierda"></div>
+<div class="puerta-invitacion puerta-derecha"></div>
 
   <div class="entrada-contenido">
 
@@ -1588,13 +1663,25 @@ document.body.style.overflow = 'hidden';
 
 abrirInvitacion.addEventListener('click', () => {
 
-  entradaInvitacion.classList.add('abierta');
+  /* Desaparece sello/texto y empiezan a abrirse
+     las dos puertas */
+
+  entradaInvitacion.classList.add('abriendo');
+
+
+  /* Permitimos scroll nuevamente */
 
   document.body.style.overflow = '';
 
+
+  /* Cuando termina la animación
+     quitamos completamente la entrada */
+
   setTimeout(() => {
+
     entradaInvitacion.style.display = 'none';
-  }, 1000);
+
+  }, 1700);
 
 });
 
