@@ -348,6 +348,115 @@
   transform: translateY(0);
 }
 
+    /* =========================
+   RESERVACIONES
+========================= */
+
+.reservaciones {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px 20px;
+}
+
+.imagen-reservas {
+  display: block;
+
+  width: min(650px, 92vw);
+  height: auto;
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+/* CONTENEDOR DE BOTONES */
+
+.botones-reserva {
+  width: min(650px, 92vw);
+
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+
+  margin-top: 25px;
+}
+
+
+/* BOTONES */
+
+.boton-reserva {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 20px;
+
+  background: #111;
+  color: #d4af37;
+
+  border: 2px solid #d4af37;
+  border-radius: 50px;
+
+  font-family: Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  text-decoration: none;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,.20);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+
+/* EFECTO COMPUTADORA */
+
+.boton-reserva:hover {
+  transform: translateY(-4px);
+
+  background: #d4af37;
+  color: #111;
+
+  box-shadow: 0 12px 25px rgba(0,0,0,.30);
+}
+
+
+/* EFECTO AL PRESIONAR */
+
+.boton-reserva:active {
+  transform: scale(.96);
+}
+
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+  .botones-reserva {
+    flex-direction: column;
+  }
+
+  .boton-reserva {
+    width: 100%;
+  }
+
+}
+
   </style>
 </head>
 
@@ -485,6 +594,45 @@
     alt="Rifas y regalos cada hora"
     class="chica-regalo"
   >
+
+</section>
+
+    <!-- =====================
+     RESERVACIONES
+====================== -->
+
+<section class="reservaciones">
+
+  <img
+    src="numero reservas.jpeg"
+    alt="Te esperamos - Reserva tu lugar"
+    class="imagen-reservas"
+  >
+
+  <div class="botones-reserva">
+
+    <a
+      href="https://wa.me/525552712345?text=Hola%2C%20quiero%20hacer%20una%20reservaci%C3%B3n%20para%20el%2015%20aniversario%20de%20La%20Reata%20de%20Oro."
+      target="_blank"
+      rel="noopener noreferrer"
+      class="boton-reserva"
+    >
+      <span>💬</span>
+      RESERVAR POR WHATSAPP
+    </a>
+
+    <a
+      href="https://maps.app.goo.gl/GWG9j9C8ieTh4Kth9"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="boton-reserva"
+      id="boton-ubicacion"
+    >
+      <span>📍</span>
+      CÓMO LLEGAR
+    </a>
+
+  </div>
 
 </section>
 
