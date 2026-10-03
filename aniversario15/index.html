@@ -568,6 +568,37 @@
     scale(1);
 }
 
+    /* =========================
+   EFECTO DE AUMENTO DE LUPA
+========================= */
+
+.objetivo-lupa {
+  transition:
+    transform 1.2s ease,
+    filter 1.2s ease;
+  transform-origin: center;
+}
+
+.objetivo-lupa.aumentado {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* La lupa se siente más viva cuando encuentra algo */
+
+.lupa-flotante.encontrado .cristal-lupa {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.30),
+    inset 0 0 18px rgba(255,255,255,.55),
+    0 0 18px rgba(184,134,11,.35);
+
+  transition:
+    transform .6s ease,
+    box-shadow .6s ease;
+}
+
   </style>
 </head>
 
@@ -608,7 +639,7 @@
      MENÚ
 ====================== -->
 
-<section class="menu-evento parada-menu">
+<section class="menu-evento parada-menu objetivo-lupa">
 
   <img
     src="menu.jpeg"
@@ -621,7 +652,7 @@
 
     <section class="artista">
 
-  <div class="titulo-artista">
+  <div class="titulo-artista objetivo-lupa objetivo-paris">
   <span>EN VIVO</span>
   <h2>PARIS AGUILAR</h2>
 </div>
@@ -649,7 +680,7 @@
 
 <section class="artista artista-sultan">
 
-  <div class="titulo-artista">
+  <div class="titulo-artista objetivo-lupa objetivo-sultan">
     <span>EN VIVO</span>
     <h2>EL SULTÁN</h2>
   </div>
@@ -712,7 +743,7 @@
   <img
     src="chica_regalo.jpeg"
     alt="Rifas y regalos cada hora"
-    class="chica-regalo"
+    class="chica-regalo objetivo-lupa objetivo-canasta"
   >
 
 </section>
@@ -970,6 +1001,7 @@ const seccionesLupa = [
   /* MENÚ */
   {
     elemento: document.querySelector('.parada-menu'),
+    objetivo: document.querySelector('.parada-menu'),
     x: '68%',
     y: '48%'
   },
@@ -977,6 +1009,7 @@ const seccionesLupa = [
   /* PARIS AGUILAR - NOMBRE */
   {
     elemento: document.querySelector('.artista .titulo-artista'),
+    objetivo: document.querySelector('.objetivo-paris'),
     x: '58%',
     y: '30%'
   },
@@ -984,6 +1017,8 @@ const seccionesLupa = [
   /* EL SULTÁN - NOMBRE */
   {
     elemento: document.querySelector('.artista-sultan .titulo-artista'),
+    objetivo: document.querySelector('.objetivo-sultan'),
+    x: '58%',
     x: '58%',
     y: '30%'
   },
@@ -991,6 +1026,7 @@ const seccionesLupa = [
   /* RIFAS - CANASTA */
   {
     elemento: document.querySelector('.rifas'),
+    objetivo: document.querySelector('.objetivo-canasta'),
     x: '62%',
     y: '58%'
   },
@@ -998,6 +1034,7 @@ const seccionesLupa = [
   /* RESERVACIONES */
   {
     elemento: document.querySelector('.reservaciones'),
+    objetivo: document.querySelector('.reservaciones'),
     x: '68%',
     y: '68%'
   }
@@ -1040,10 +1077,36 @@ function moverLupa() {
 
   const destino = seccionesLupa[seccionActual];
 
-  lupa.classList.add('visible');
 
-  lupa.style.left = destino.x;
-  lupa.style.top = destino.y;
+/* QUITAMOS EL AUMENTO ANTERIOR */
+
+document
+  .querySelectorAll('.objetivo-lupa')
+  .forEach(elemento => {
+    elemento.classList.remove('aumentado');
+  });
+
+
+/* MOVEMOS LA LUPA */
+
+lupa.classList.add('visible');
+
+lupa.style.left = destino.x;
+lupa.style.top = destino.y;
+
+
+/* ACTIVAMOS EL OBJETIVO */
+
+if (destino.objetivo) {
+
+  destino.objetivo.classList.add('aumentado');
+  lupa.classList.add('encontrado');
+
+} else {
+
+  lupa.classList.remove('encontrado');
+
+}
 
 }
 
