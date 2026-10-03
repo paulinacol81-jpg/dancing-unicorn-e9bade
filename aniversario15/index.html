@@ -599,11 +599,29 @@
     box-shadow .6s ease;
 }
 
+    /* =========================
+   CONFETI FINAL
+========================= */
+
+#confeti-final {
+  position: fixed;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+  z-index: 9998;
+
+  display: none;
+}
+
   </style>
 </head>
 
 
 <body>
+  <canvas id="confeti-final"></canvas>
 
   <!-- =====================
      LUPA FLOTANTE
@@ -1123,6 +1141,163 @@ window.addEventListener(
 );
 
 moverLupa();
+
+    /* =========================
+   CONFETI FINAL
+========================= */
+
+const canvasConfeti = document.getElementById('confeti-final');
+const ctxConfeti = canvasConfeti.getContext('2d');
+
+let particulasConfeti = [];
+let confetiLanzado = false;
+let animacionConfeti;
+
+
+function ajustarCanvasConfeti() {
+
+  canvasConfeti.width = window.innerWidth;
+  canvasConfeti.height = window.innerHeight;
+
+}
+
+ajustarCanvasConfeti();
+
+window.addEventListener('resize', ajustarCanvasConfeti);
+
+
+function crearConfeti() {
+
+  particulasConfeti = [];
+
+  for (let i = 0; i < 110; i++) {
+
+    particulasConfeti.push({
+
+      x: Math.random() * canvasConfeti.width,
+
+      y: -Math.random() * canvasConfeti.height,
+
+      ancho: 5 + Math.random() * 6,
+
+      alto: 8 + Math.random() * 8,
+
+      velocidadY: 2 + Math.random() * 3,
+
+      velocidadX: -1 + Math.random() * 2,
+
+      rotacion: Math.random() * Math.PI,
+
+      giro: -0.08 + Math.random() * 0.16,
+
+      color: Math.random() > 0.45
+        ? '#d4af37'
+        : '#111111'
+
+    });
+
+  }
+
+}
+
+
+function animarConfeti() {
+
+  ctxConfeti.clearRect(
+    0,
+    0,
+    canvasConfeti.width,
+    canvasConfeti.height
+  );
+
+
+  particulasConfeti.forEach(particula => {
+
+    particula.y += particula.velocidadY;
+    particula.x += particula.velocidadX;
+    particula.rotacion += particula.giro;
+
+
+    ctxConfeti.save();
+
+    ctxConfeti.translate(
+      particula.x,
+      particula.y
+    );
+
+    ctxConfeti.rotate(particula.rotacion);
+
+    ctxConfeti.fillStyle = particula.color;
+
+    ctxConfeti.fillRect(
+      -particula.ancho / 2,
+      -particula.alto / 2,
+      particula.ancho,
+      particula.alto
+    );
+
+    ctxConfeti.restore();
+
+  });
+
+
+  animacionConfeti =
+    requestAnimationFrame(animarConfeti);
+
+}
+
+
+function lanzarConfeti() {
+
+  if (confetiLanzado) return;
+
+  confetiLanzado = true;
+
+  canvasConfeti.style.display = 'block';
+
+  crearConfeti();
+  animarConfeti();
+
+
+  setTimeout(() => {
+
+    cancelAnimationFrame(animacionConfeti);
+
+    ctxConfeti.clearRect(
+      0,
+      0,
+      canvasConfeti.width,
+      canvasConfeti.height
+    );
+
+    canvasConfeti.style.display = 'none';
+
+  }, 4000);
+
+}
+
+
+/* DETECTAR RESERVACIONES */
+
+const observerConfeti =
+  new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        lanzarConfeti();
+      }
+
+    });
+
+  }, {
+    threshold: 0.35
+  });
+
+
+observerConfeti.observe(
+  document.querySelector('.reservaciones')
+);
 
 </script>
   
