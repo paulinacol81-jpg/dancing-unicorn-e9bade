@@ -488,147 +488,6 @@
 
 }
 
-    /* =========================
-   LUPA FLOTANTE
-========================= */
-
-.lupa-flotante {
-  position: fixed;
-
-  width: 95px;
-  height: 135px;
-
-  left: 100px;
-  top: 150px;
-
-  z-index: 9999;
-
-  pointer-events: none;
-
-  opacity: 1;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(-15deg)
-    scale(.8);
-
-  transition:
-  left 2.2s cubic-bezier(.22,.61,.36,1),
-  top 2.2s cubic-bezier(.22,.61,.36,1),
-  opacity .8s ease,
-  transform 1.2s ease;
-}
-
-
-/* CRISTAL */
-
-.cristal-lupa {
-  position: absolute;
-
-  width: 78px;
-  height: 78px;
-
-  border: 7px solid #b8860b;
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.12);
-
-  box-shadow:
-    0 5px 18px rgba(0,0,0,.30),
-    inset 0 0 15px rgba(255,255,255,.4);
-}
-
-
-/* BRILLO DEL CRISTAL */
-
-.cristal-lupa::after {
-  content: "";
-
-  position: absolute;
-
-  width: 20px;
-  height: 10px;
-
-  top: 13px;
-  left: 13px;
-
-  border-radius: 50%;
-
-  background: rgba(255,255,255,.65);
-
-  transform: rotate(-35deg);
-}
-
-
-/* MANGO */
-
-.mango-lupa {
-  position: absolute;
-
-  width: 18px;
-  height: 65px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #6f4c00,
-      #d4af37,
-      #8b6508
-    );
-
-  border-radius: 10px;
-
-  left: 67px;
-  top: 65px;
-
-  transform: rotate(-42deg);
-  transform-origin: top center;
-
-  box-shadow: 0 5px 12px rgba(0,0,0,.3);
-}
-
-
-/* CUANDO APARECE */
-
-.lupa-flotante.visible {
-  opacity: 1;
-
-  transform:
-    translate(-50%, -50%)
-    rotate(0deg)
-    scale(1);
-}
-
-    /* =========================
-   EFECTO DE AUMENTO DE LUPA
-========================= */
-
-.objetivo-lupa {
-  transition:
-    transform 1.2s ease,
-    filter 1.2s ease;
-  transform-origin: center;
-}
-
-.objetivo-lupa.aumentado {
-  transform: scale(1.08);
-  filter: brightness(1.05);
-}
-
-/* La lupa se siente más viva cuando encuentra algo */
-
-.lupa-flotante.encontrado .cristal-lupa {
-  transform: scale(1.08);
-
-  box-shadow:
-    0 5px 18px rgba(0,0,0,.30),
-    inset 0 0 18px rgba(255,255,255,.55),
-    0 0 18px rgba(184,134,11,.35);
-
-  transition:
-    transform .6s ease,
-    box-shadow .6s ease;
-}
 
     /* =========================
    CONFETI FINAL
@@ -956,6 +815,11 @@
 
 
 <body>
+
+  <audio id="musicaFondo" loop preload="auto">
+  <source src="musica_aniversario.mpeg" type="audio/mpeg">
+</audio>
+  
 <!-- =====================
      APERTURA INVITACIÓN
 ====================== -->
@@ -999,14 +863,7 @@
   
   <canvas id="confeti-final"></canvas>
 
-  <!-- =====================
-     LUPA FLOTANTE
-====================== -->
 
-<div class="lupa-flotante" id="lupa">
-  <div class="cristal-lupa"></div>
-  <div class="mango-lupa"></div>
-</div>
 
   <main>
 
@@ -1384,139 +1241,7 @@ const observerRegalo = new IntersectionObserver((entries) => {
 
 observerRegalo.observe(chicaRegalo);
 
-   /* =========================
-   LUPA VIAJERA
-========================= */
 
-const lupa = document.getElementById('lupa');
-
-const seccionesLupa = [
-
-  /* MENÚ */
-  {
-    elemento: document.querySelector('.parada-menu'),
-    objetivo: document.querySelector('.parada-menu'),
-    x: '68%',
-    y: '48%'
-  },
-
-  /* PARIS AGUILAR - NOMBRE */
-  {
-    elemento: document.querySelector('.artista .titulo-artista'),
-    objetivo: document.querySelector('.objetivo-paris'),
-    x: '58%',
-    y: '30%'
-  },
-
-  /* EL SULTÁN - NOMBRE */
-  {
-    elemento: document.querySelector('.artista-sultan .titulo-artista'),
-    objetivo: document.querySelector('.objetivo-sultan'),
-    x: '58%',
-    x: '58%',
-    y: '30%'
-  },
-
-  /* RIFAS - CANASTA */
-  {
-    elemento: document.querySelector('.rifas'),
-    objetivo: document.querySelector('.objetivo-canasta'),
-    x: '62%',
-    y: '58%'
-  },
-
-  /* RESERVACIONES */
-  {
-    elemento: document.querySelector('.reservaciones'),
-    objetivo: document.querySelector('.reservaciones'),
-    x: '68%',
-    y: '68%'
-  }
-
-];
-
-
-function moverLupa() {
-
-  let seccionActual = -1;
-
-  seccionesLupa.forEach((seccion, indice) => {
-
-    if (!seccion.elemento) return;
-
-    const rect =
-      seccion.elemento.getBoundingClientRect();
-
-    if (
-      rect.top < window.innerHeight * 0.65 &&
-      rect.bottom > window.innerHeight * 0.35
-    ) {
-
-      seccionActual = indice;
-
-    }
-
-  });
-
-
-  /* SI TODAVÍA NO LLEGAMOS AL MENÚ */
-
-  if (seccionActual === -1) {
-
-    lupa.classList.remove('visible');
-    return;
-
-  }
-
-
-  const destino = seccionesLupa[seccionActual];
-
-
-/* QUITAMOS EL AUMENTO ANTERIOR */
-
-document
-  .querySelectorAll('.objetivo-lupa')
-  .forEach(elemento => {
-    elemento.classList.remove('aumentado');
-  });
-
-
-/* MOVEMOS LA LUPA */
-
-lupa.classList.add('visible');
-
-lupa.style.left = destino.x;
-lupa.style.top = destino.y;
-
-
-/* ACTIVAMOS EL OBJETIVO */
-
-if (destino.objetivo) {
-
-  destino.objetivo.classList.add('aumentado');
-  lupa.classList.add('encontrado');
-
-} else {
-
-  lupa.classList.remove('encontrado');
-
-}
-
-}
-
-
-window.addEventListener(
-  'scroll',
-  moverLupa,
-  { passive: true }
-);
-
-window.addEventListener(
-  'resize',
-  moverLupa
-);
-
-moverLupa();
 
     /* =========================
    CONFETI FINAL
@@ -1693,6 +1418,12 @@ document.body.style.overflow = 'hidden';
 
 
 abrirInvitacion.addEventListener('click', () => {
+    const musica = document.getElementById('musicaFondo');
+
+  musica.volume = 0.35;
+  musica.play().catch(error => {
+    console.log('El navegador bloqueó el audio:', error);
+  });
 
   /* Desaparece sello/texto y empiezan a abrirse
      las dos puertas */
