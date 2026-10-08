@@ -1594,25 +1594,66 @@ document.addEventListener("DOMContentLoaded", function () {
   // Música de fondo
   const musica = document.querySelector("audio");
 
-  // Todos los videos de la invitación
+  // Videos de los celulares
   const videos = document.querySelectorAll("video");
 
   if (!musica) return;
+
+  let videoActivo = null;
+  let musicaInterrumpida = false;
 
   // Cuando se reproduce un video
   videos.forEach(video => {
 
     video.addEventListener("play", function () {
 
-      // Pausar música de fondo
-      musica.pause();
+      videoActivo = video;
+
+      // Recordar si la música estaba sonando
+      if (!musica.paused) {
+        musicaInterrumpida = true;
+        musica.pause();
+      }
 
       // Pausar los demás videos
       videos.forEach(otroVideo => {
-        if (otroVideo !== video) {
+        if (otroVideo !== video && !otroVideo.paused) {
           otroVideo.pause();
         }
       });
+
+    });
+
+    // Cuando se pausa un video
+    video.addEventListener("pause", function () {
+
+      if (videoActivo !== video) return;
+
+      videoActivo = null;
+
+      // Reanudar música de fondo
+      if (musicaInterrumpida) {
+        musicaInterrumpida = false;
+        musica.play().catch(error => {
+          console.log("No se pudo reanudar la música:", error);
+        });
+      }
+
+    });
+
+    // Cuando termina un video
+    video.addEventListener("ended", function () {
+
+      if (videoActivo !== video) return;
+
+      videoActivo = null;
+
+      if (musicaInterrumpida) {
+        musicaInterrumpida = false;
+        musica.play().catch(error => {
+          console.log("No se pudo reanudar la música:", error);
+        });
+      }
 
     });
 
@@ -1621,15 +1662,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // Cuando se reproduce la música de fondo
   musica.addEventListener("play", function () {
 
+    musicaInterrumpida = false;
+    videoActivo = null;
+
     videos.forEach(video => {
-      video.pause();
+      if (!video.paused) {
+        video.pause();
+      }
     });
 
   });
 
 });
 </script>
-  
   
 
 </body>
