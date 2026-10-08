@@ -1588,6 +1588,48 @@ abrirInvitacion.addEventListener('click', () => {
 });
 
 </script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Música de fondo
+  const musica = document.querySelector("audio");
+
+  // Todos los videos de la invitación
+  const videos = document.querySelectorAll("video");
+
+  if (!musica) return;
+
+  // Cuando se reproduce un video
+  videos.forEach(video => {
+
+    video.addEventListener("play", function () {
+
+      // Pausar música de fondo
+      musica.pause();
+
+      // Pausar los demás videos
+      videos.forEach(otroVideo => {
+        if (otroVideo !== video) {
+          otroVideo.pause();
+        }
+      });
+
+    });
+
+  });
+
+  // Cuando se reproduce la música de fondo
+  musica.addEventListener("play", function () {
+
+    videos.forEach(video => {
+      video.pause();
+    });
+
+  });
+
+});
+</script>
+  
   
 
 </body>
